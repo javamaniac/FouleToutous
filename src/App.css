@@ -44,6 +44,23 @@
   z-index: 1;
 }
 
+.recherche {
+  font-size: 2em;
+  margin: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.toutou {
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.toutou .nom {
+  margin-top: 10px;
+}
+
 .images:hover {
   /* zoom: 120%; */
   background: blueviolet;

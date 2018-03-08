@@ -28,12 +28,34 @@ const toutous = [
   },
   {
     nom: "Sonette",
-    photo: ""
+  },
+  {
+    nom: "Roxy",
+  },
+  {
+    nom: "Rosie",
+  },
+  {
+    nom: "Rory",
+  },
+  {
+    nom: "Cachou",
+  },
+  {
+    nom: "Froufrou",
+  },
+  {
+    nom: "Patte",
+  },
+  {
+    nom: "Coucou",
+  },
+  {
+    nom: "Flocon",
+  },
+  {
+    nom: "Oréo",
   }
 ];
 
-// export toutous
-// // module.exports toutous
-
-// module.exports = 'Hello world 1';
 exports.toutous = toutous
