@@ -1,4 +1,4 @@
-[![Build status](https://travis-ci.org/javamaniac/foule-toutous.svg?branch=master)](https://travis-ci.org/javamaniac/foule-toutous)
+[![Build status](https://travis-ci.org/javamaniac/FouleToutous.svg?branch=master)](https://travis-ci.org/javamaniac/FouleToutous)
 
 ## Foule Toutous!
 
