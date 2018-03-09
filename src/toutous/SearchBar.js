@@ -1,31 +1,31 @@
-import React from 'react';
+import React from 'react'
 // import logo from '../logo.svg';
 // import { toutous } from '../data.js';
 // import ToutouImage from '../ToutouImage.js';
-import '../App.css';
+import '../App.css'
 
 class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleInStockChange = this.handleInStockChange.bind(this);
+  constructor (props) {
+    super(props)
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this)
+    this.handleInStockChange = this.handleInStockChange.bind(this)
   }
-  
-  handleFilterTextChange(e) {
-    this.props.onFilterTextChange(e.target.value);
+
+  handleFilterTextChange (e) {
+    this.props.onFilterTextChange(e.target.value)
   }
-  
-  handleInStockChange(e) {
-    this.props.onInStockChange(e.target.checked);
+
+  handleInStockChange (e) {
+    this.props.onInStockChange(e.target.checked)
   }
-  
-  render() {
+
+  render () {
     return (
       <form>
         <input
-          className="recherche"
-          type="search"
-          placeholder="Recherche"
+          className='recherche'
+          type='search'
+          placeholder='Recherche'
           value={this.props.filterText}
           onChange={this.handleFilterTextChange}
         />
@@ -39,8 +39,8 @@ class SearchBar extends React.Component {
           Only show products in stock
         </p> */}
       </form>
-    );
+    )
   }
 }
 
-export default SearchBar;
+export default SearchBar
