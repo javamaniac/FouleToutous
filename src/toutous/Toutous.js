@@ -1,5 +1,4 @@
 import React from 'react'
-import { toutous } from '../data.js'
 import FilterableToutousTable from './FilterableToutousTable.js'
 import '../App.css'
 
@@ -10,12 +9,12 @@ class Toutous extends React.Component {
         <header className='App-header'>
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className='App-title'>Foule toutous</h1>
-          <button>Ajouter un toutou</button>
+          {/* <button>Ajouter un toutou</button> */}
         </header>
 
         <FilterableToutousTable
           selectToutou={this.props.selectToutou}
-          toutous={toutous}
+          toutous={this.props.toutous}
         />
       </div>
     )

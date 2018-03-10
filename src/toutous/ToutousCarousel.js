@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import logo from '../logo.svg'
-import { toutous } from '../data.js'
+// import { toutous } from '../data.js'
 import ToutouImage from '../ToutouImage.js'
 import '../App.css'
 
 class ToutousCarousel extends React.Component {
   render () {
     const filterText = this.props.filterText
-    const inStockOnly = this.props.inStockOnly
-
     const images = []
-    let lastCategory = null
 
     this.props.toutous.forEach((toutou) => {
       console.log(toutou.nom, filterText)

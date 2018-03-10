@@ -1,14 +1,16 @@
 import React from "react";
 import ToutouRow from "./ToutouRow.js";
 import "../App.css";
+import fireb from '../fireb';
 
 class ToutousTable extends React.Component {
   render() {
     const filterText = this.props.filterText;
     const toutous = [];
 
-    this.props.toutous.forEach(toutou => {
-      console.log(toutou.nom, filterText);
+    const keys = Object.keys(this.props.toutous)
+    keys.forEach(toutouKey => {
+      const toutou = this.props.toutous[toutouKey]
       if (filterText) {
         if (
           toutou.nom
@@ -20,7 +22,7 @@ class ToutousTable extends React.Component {
       }
 
       toutous.push(
-        <span onClick={this._ficheToutou.bind(this, toutou, "name")}>
+        <span key={toutouKey} onClick={this._ficheToutou.bind(this, toutouKey, toutou, "name")}>
           <ToutouRow toutou={toutou} key={toutou.nom} />
         </span>
       );
@@ -32,6 +34,7 @@ class ToutousTable extends React.Component {
       };
       toutous.push(
         <div
+          key={nouveau.nom}
           className="toutou"
           onClick={this._nouveauToutou.bind(this, nouveau, "name")}
         >
@@ -50,14 +53,15 @@ class ToutousTable extends React.Component {
     );
   }
 
-  _nouveauToutou(toutou) {
-    window.history.pushState({}, "", `/creation/${toutou.nom}`);
-    this.props.selectToutou(toutou, true);
+  _nouveauToutou (toutouConfig) {
+    const toutou = fireb.database().ref('toutous').push(toutouConfig);
+    window.history.pushState({ key: toutou.key }, "", `/fiche/${toutouConfig.nom}`);
+    this.props.selectToutou(toutou);
   }
 
-  _ficheToutou = toutou => {
-    window.history.pushState({}, "", `/fiche/${toutou.nom}`);
-    this.props.selectToutou(toutou, false);
+  _ficheToutou = (toutouKey, toutou) => {
+    window.history.pushState({key: toutouKey}, "", `/fiche/${toutou.nom}`);
+    this.props.selectToutou(toutou);
   };
 }
 

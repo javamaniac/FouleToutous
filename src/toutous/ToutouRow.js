@@ -1,6 +1,4 @@
 import React from 'react'
-// import logo from '../logo.svg';
-// import { toutous } from '../data.js';
 import ToutouImage from '../ToutouImage.js'
 import '../App.css'
 
