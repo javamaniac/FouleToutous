@@ -9,6 +9,10 @@ class Toutous extends React.Component {
         <header className='App-header'>
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className='App-title'>Foule toutous</h1>
+          <button
+            id='search'
+            onClick={this.recherche}
+            >⌕</button>
           {/* <button>Ajouter un toutou</button> */}
         </header>
 
@@ -18,6 +22,14 @@ class Toutous extends React.Component {
         />
       </div>
     )
+  }
+
+  recherche () {
+    const recherche = document.querySelector('.recherche')
+    let display = recherche.style.display
+    display = (display === 'block') ? 'none' : 'block'
+    recherche.style.display = display
+    recherche.focus()
   }
 }
 

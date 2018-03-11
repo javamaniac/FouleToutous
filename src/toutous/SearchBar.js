@@ -25,6 +25,7 @@ class SearchBar extends React.Component {
           placeholder='Recherche'
           value={this.props.filterText}
           onChange={this.handleFilterTextChange}
+          onBlur={this.masquer}
         />
         {/* <p>
           <input
@@ -37,6 +38,11 @@ class SearchBar extends React.Component {
         </p> */}
       </form>
     )
+  }
+
+  masquer (ev) {
+    const recherche = ev.target
+    recherche.style.display = 'none'
   }
 }
 

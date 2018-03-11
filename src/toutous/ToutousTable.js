@@ -9,7 +9,19 @@ class ToutousTable extends React.Component {
     const toutous = [];
 
     const keys = Object.keys(this.props.toutous)
-    keys.forEach(toutouKey => {
+
+    const toutousTries = keys.sort((a, b) => {
+      a = this.props.toutous[a].nom
+      b = this.props.toutous[b].nom
+      if (a < b) {
+        return -1;
+      }
+      if (a > b) {
+        return 1;
+      }
+      return 0;
+    })
+    toutousTries.forEach(toutouKey => {
       const toutou = this.props.toutous[toutouKey]
       if (filterText) {
         if (
