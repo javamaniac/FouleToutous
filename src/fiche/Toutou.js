@@ -1,5 +1,6 @@
 import React from 'react'
 import ToutouImage from '../ToutouImage.js'
+import musique from '../musique/ambiance.mp3'
 import { resize } from '../ImagesUtil.js'
 import '../App.css'
 import fireb from '../fireb'
@@ -10,6 +11,7 @@ class FicheToutou extends React.Component {
     this.onUpload = this.onUpload.bind(this)
     this.setGenre = this.setGenre.bind(this)
     this.setValue = this.setValue.bind(this)
+    this.setChecked = this.setChecked.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -87,6 +89,36 @@ class FicheToutou extends React.Component {
             </div>
 
             <div className='type'>
+              <label htmlFor='delegue'>Délégué</label>
+              <div>
+                <input
+                  id='delegue'
+                  type='checkbox'
+                  defaultValue={toutou.delegue}
+                  onChange={this.setChecked} />
+              </div>
+            </div>
+
+            <div className='type'>
+              <label htmlFor='equipe'>Équipe</label>
+              <select
+                id='equipe'
+                defaultValue={toutou.equipe}
+                onChange={this.setValue}>
+                <option value=''>Sans équipe</option>
+                <option value='11'>Équipe 1 - Jelly beans</option>
+                <option value='12'>Équipe 2 - </option>
+                <option value='13'>Équipe 3 - </option>
+                <option value='14'>Équipe 4 - </option>
+                <option value='15'>Équipe 5 - </option>
+                <option value='16'>Équipe 6 - </option>
+                <option value='17'>Équipe 7 - Sedna</option>
+                <option value='18'>Équipe 8 - </option>
+                <option value='19'>Équipe 9 - </option>
+              </select>
+            </div>
+
+            <div className='type'>
               <label htmlFor='description'>Description</label>
               <textarea
                 id='description'
@@ -94,17 +126,31 @@ class FicheToutou extends React.Component {
                 defaultValue={toutou.description}
                  />
             </div>
+
             <div className='type'>
-              <label htmlFor='habiletes'>habiletés</label>
+              <label htmlFor='habiletes'>Talents</label>
               <textarea
                 id='habiletes'
                 onBlur={this.setValue}
                 defaultValue={toutou.habiletes}
                  />
             </div>
+
+            <div className='type'>
+              <label htmlFor='faiblesses'>Faiblesses</label>
+              <textarea
+                id='faiblesses'
+                onBlur={this.setValue}
+                defaultValue={toutou.faiblesses}
+                 />
+            </div>
           </div>
           <button onClick={this.supprimer.bind(this, toutou)}>✖</button>
         </div>
+
+        <audio autoPlay loop controls>
+          <source src={musique} type='audio/mpeg' />
+        </audio>
       </div>
     )
   }
@@ -121,6 +167,15 @@ class FicheToutou extends React.Component {
 
     fireb.database().ref(ref).update(nouvelleValeur)
     console.log('update ', champ, ev.target.value)
+  }
+
+  setChecked (ev) {
+    const champ = ev.target.id
+    const ref = `toutous/${window.history.state.key}`
+    const nouvelleValeur = {}
+    nouvelleValeur[champ] = ev.target.checked
+    fireb.database().ref(ref).update(nouvelleValeur)
+    console.log('update ', champ, ev.target.checked)
   }
 
   getAge (naissance) {
