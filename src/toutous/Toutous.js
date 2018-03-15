@@ -1,5 +1,6 @@
 import React from 'react'
 import FilterableToutousTable from './FilterableToutousTable.js'
+import musique from '../musique/mousemix052.mp3'
 import '../App.css'
 
 class Toutous extends React.Component {
@@ -20,6 +21,10 @@ class Toutous extends React.Component {
           selectToutou={this.props.selectToutou}
           toutous={this.props.toutous}
         />
+
+        <audio autoPlay loop controls>
+          <source src={musique} type='audio/mpeg' />
+        </audio>
       </div>
     )
   }
