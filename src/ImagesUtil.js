@@ -1,32 +1,32 @@
-const resize = async (file, callback) => {
+const resize = async ({ file, callback, maxWidth = 400, maxHeight = 300 }) => {
   return new Promise((resolve, reject) => {
-    var reader = new window.FileReader()
+    const reader = new window.FileReader()
     reader.onloadend = function () {
-      var tempImg = new window.Image()
-      tempImg.src = reader.result
+      const imageSrc = reader.result
+      const tempImg = new window.Image()
+      tempImg.src = imageSrc
       tempImg.onload = function () {
-        var MAX_WIDTH = 400
-        var MAX_HEIGHT = 300
-        var tempW = tempImg.width
-        var tempH = tempImg.height
+        let tempW = tempImg.width
+        let tempH = tempImg.height
         if (tempW > tempH) {
-          if (tempW > MAX_WIDTH) {
-            tempH *= MAX_WIDTH / tempW
-            tempW = MAX_WIDTH
+          if (tempW > maxWidth) {
+            tempH *= maxWidth / tempW
+            tempW = maxWidth
           }
         } else {
-          if (tempH > MAX_HEIGHT) {
-            tempW *= MAX_HEIGHT / tempH
-            tempH = MAX_HEIGHT
+          if (tempH > maxHeight) {
+            tempW *= maxHeight / tempH
+            tempH = maxHeight
           }
         }
 
-        var canvas = document.createElement('canvas')
+        const canvas = document.createElement('canvas')
         canvas.width = tempW
         canvas.height = tempH
-        var ctx = canvas.getContext('2d')
+        const ctx = canvas.getContext('2d')
         ctx.drawImage(this, 0, 0, tempW, tempH)
-        var dataURL = canvas.toDataURL('image/jpeg')
+        const dataURL = canvas.toDataURL('image/jpeg')
+
         resolve(dataURL)
       }
     }
@@ -34,4 +34,35 @@ const resize = async (file, callback) => {
   })
 }
 
-export { resize }
+const resize2 = async ({ imageSrc, callback, maxWidth = 400, maxHeight = 300 }) => {
+  return new Promise((resolve, reject) => {
+    const tempImg = new window.Image()
+    tempImg.src = imageSrc
+    tempImg.onload = function () {
+      let tempW = tempImg.width
+      let tempH = tempImg.height
+      if (tempW > tempH) {
+        if (tempW > maxWidth) {
+          tempH *= maxWidth / tempW
+          tempW = maxWidth
+        }
+      } else {
+        if (tempH > maxHeight) {
+          tempW *= maxHeight / tempH
+          tempH = maxHeight
+        }
+      }
+
+      const canvas = document.createElement('canvas')
+      canvas.width = tempW
+      canvas.height = tempH
+      const ctx = canvas.getContext('2d')
+      ctx.drawImage(this, 0, 0, tempW, tempH)
+      const dataURL = canvas.toDataURL('image/jpeg')
+
+      resolve(dataURL)
+    }
+  })
+}
+
+export { resize, resize2 }
