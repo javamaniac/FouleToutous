@@ -25,7 +25,7 @@ class App extends Component {
       this.setState({
         toutou: null
       })
-    };
+    }
 
     window.App = this;
   }
