@@ -19,9 +19,22 @@ class FicheToutou extends React.Component {
 
   async onUpload (e) {
     // FIXME loading
-    const dataUrl = await resize(e.target.files[0])
-    const ref = `toutous/${window.history.state.key}`
+    const file = e.target.files[0]
+
+    const dataUrl = await resize({
+      file: file
+    })
+    const ref = `toutousImages/${window.history.state.key}`
     fireb.database().ref(ref).update({ imageSrc: dataUrl })
+
+    const dataUrlSmall = await resize({
+      file: file,
+      maxWidth: 32,
+      maxHeight: 32
+    })
+    const ref2 = `toutous/${window.history.state.key}`
+    fireb.database().ref(ref2).update({ imageSrcSmall: dataUrlSmall })
+
     console.log('update imageSrc')
   }
 
@@ -47,10 +60,16 @@ class FicheToutou extends React.Component {
             defaultValue={toutou.nom}
             onBlur={this.setValue}
             />
+          <button
+            id='next'
+            onClick={this.next}
+            >&gt;</button>
         </header>
 
         <label htmlFor='file-input'>
-          <ToutouImage gros toutou={toutou} />
+          {/* <ToutouImage gros toutou={toutou} image={toutou.imageSrc} /> */}
+          <ToutouImage gros toutou={toutou} image={this.props.toutouImage} />
+          <ToutouImage gros toutou={toutou} image={toutou.imageSrcSmall} />
         </label>
         <input type='file' accept='image/*' id='file-input'
           onChange={this.onUpload} />
@@ -148,7 +167,8 @@ class FicheToutou extends React.Component {
           <button onClick={this.supprimer.bind(this, toutou)}>✖</button>
         </div>
 
-        <audio autoPlay loop controls>
+        {/* autoPlay */}
+        <audio loop controls>
           <source src={musique} type='audio/mpeg' />
         </audio>
       </div>
