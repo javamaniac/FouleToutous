@@ -8,7 +8,7 @@ class ToutouRow extends React.Component {
     const nom = toutou.nom
     return (
       <div className='toutou'>
-        <ToutouImage toutou={toutou} />
+        <ToutouImage toutou={toutou} image={toutou.imageSrcSmall} />
         <div className='nom'>{nom}</div>
       </div>
     )
