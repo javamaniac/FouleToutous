@@ -5,13 +5,14 @@ import './App.css'
 class ToutouImage extends React.Component {
   render () {
     const toutou = this.props.toutou
-
-    let image = (toutou.imageSrc) ? toutou.imageSrc : toutouPng
+    const imageSrc = (this.props.image) || toutouPng
 
     return (
-      <div className='images'>
-        <img src={image} alt={toutou.nom} />
-        {/* a{toutou.nom} */}
+      <div>
+        <div className='images'>
+          <img src={imageSrc} alt={toutou.nom} />
+          {/* a{toutou.nom} */}
+        </div>
       </div>
     )
   }
