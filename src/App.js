@@ -24,7 +24,7 @@ class App extends Component {
     window.onpopstate = ev => {
       this.setState({
         toutou: null
-      });
+      })
     };
 
     window.App = this;
